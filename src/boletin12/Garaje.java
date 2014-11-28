@@ -21,9 +21,11 @@ public class Garaje {
     }
 
     public long entraCoche() {
-        t_entrada = System.currentTimeMillis();
-        numC++;
-        matr = JOptionPane.showInputDialog("Introducir Matrícula");
+        if (plazas() == true) {
+            t_entrada = System.currentTimeMillis();
+            matr = JOptionPane.showInputDialog("Introducir Matrícula");
+            numC++;
+        }
         return t_entrada;
     }
 
@@ -45,12 +47,13 @@ public class Garaje {
     }
 
     public void factura() {
+        saleCoche();
         this.tiempo();
         this.precio();
-        float pagado = Float.parseFloat(JOptionPane.showInputDialog("Introducir importe"));
+        float pagado = Float.parseFloat(JOptionPane.showInputDialog("Precio: " + precio + "\nIntroducir importe"));
         float devol = pagado - precio;
 
-        JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo+" segundos" + "\nPRECIO: " + precio + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + devol + "€");
+        JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo + " segundos" + "\nPRECIO: " + precio + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + devol + "€");
     }
 
 }
