@@ -51,8 +51,11 @@ public class Garaje {
         this.tiempo();
         this.precio();
         float pagado = Float.parseFloat(JOptionPane.showInputDialog("Precio: " + precio + "\nIntroducir importe"));
+        do {
+            pagado = Float.parseFloat(JOptionPane.showInputDialog("ERROR Importe insuficiente\nPrecio: " + precio + "\nIntroducir importe"));
+        } while (pagado < precio);
+        
         float devol = pagado - precio;
-
         JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo + " segundos" + "\nPRECIO: " + precio + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + devol + "€");
     }
 
