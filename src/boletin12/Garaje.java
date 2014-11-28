@@ -1,5 +1,7 @@
 package boletin12;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.JOptionPane;
 
 public class Garaje {
@@ -41,22 +43,30 @@ public class Garaje {
     }
 
     public float precio() {
-
         precio = (((tiempo / 3) - 1) * 0.2f) + 0.4f;
         return precio;
+    }
+
+    public BigDecimal redondearPrecio() {
+        BigDecimal big = new BigDecimal(precio);
+        big = big.setScale(2, RoundingMode.HALF_UP);
+        return big;
     }
 
     public void factura() {
         saleCoche();
         this.tiempo();
         this.precio();
-        float pagado = Float.parseFloat(JOptionPane.showInputDialog("Precio: " + precio + "\nIntroducir importe"));
-        do {
-            pagado = Float.parseFloat(JOptionPane.showInputDialog("ERROR Importe insuficiente\nPrecio: " + precio + "\nIntroducir importe"));
-        } while (pagado < precio);
-        
+        float pagado = Float.parseFloat(JOptionPane.showInputDialog("Precio: " + redondearPrecio() + "\nIntroducir importe"));
+        if (pagado < precio) {
+            do {
+                pagado = Float.parseFloat(JOptionPane.showInputDialog("ERROR Importe insuficiente\nPrecio: " + redondearPrecio() + "\nIntroducir importe"));
+            } while (pagado < precio);
+        }
         float devol = pagado - precio;
-        JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo + " segundos" + "\nPRECIO: " + precio + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + devol + "€");
+        BigDecimal big = new BigDecimal(devol);
+        big = big.setScale(2, RoundingMode.HALF_UP);
+        JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo + " segundos" + "\nPRECIO: " + redondearPrecio() + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + big + "€");
     }
 
 }

@@ -26,10 +26,6 @@ public class Boletin12 {
 
         par.entraCoche();
         par2.entraCoche();
-        par3.entraCoche();
-        par4.entraCoche();
-        par5.entraCoche();
-        par6.entraCoche();
         par.factura();
         par2.factura();
 
