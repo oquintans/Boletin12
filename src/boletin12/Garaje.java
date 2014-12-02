@@ -14,7 +14,7 @@ public class Garaje {
 
     public boolean plazas() {
         if (numC < 5) {
-            JOptionPane.showMessageDialog(null, "Hay Plazas");
+            JOptionPane.showMessageDialog(null, "Hay " + (5 - numC) + " Plazas");
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Parking Completo");
@@ -68,5 +68,4 @@ public class Garaje {
         big = big.setScale(2, RoundingMode.HALF_UP);
         JOptionPane.showMessageDialog(null, "FACTURA\n MATRICULA COCHE: " + matr + "\nTIEMPO: " + tiempo + " segundos" + "\nPRECIO: " + redondearPrecio() + "€" + "\nCARTOS RECIBIDOS: " + pagado + "€" + "\nCARTOS DEVOLTOS: " + big + "€");
     }
-
 }
